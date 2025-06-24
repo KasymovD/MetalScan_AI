@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>IntelligentSystem</class>
+ <widget class="QMainWindow" name="IntelligentSystem">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>913</width>
-    <height>618</height>
+    <width>917</width>
+    <height>612</height>
    </rect>
+  </property>
+  <property name="cursor">
+   <cursorShape>ArrowCursor</cursorShape>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -20,70 +23,9 @@
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
-     <layout class="QGridLayout" name="gridLayout_2">
-      <property name="leftMargin">
-       <number>18</number>
-      </property>
-      <property name="topMargin">
-       <number>18</number>
-      </property>
-      <property name="rightMargin">
-       <number>18</number>
-      </property>
-      <item row="0" column="1">
-       <widget class="QLabel" name="label_5">
-        <property name="styleSheet">
-         <string notr="true">QLabel {
-    border: 1px solid white;
-	border-color: rgb(128, 212, 236);
-}
-</string>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="QLabel" name="label_6">
-        <property name="styleSheet">
-         <string notr="true">QLabel {
-    border: 1px solid white;
-	border-color: rgb(128, 212, 236);
-}
-</string>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QLabel {
-    border: 1px solid white;
-	border-color: rgb(128, 212, 236);
-}
-</string>
-        </property>
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="0">
-     <layout class="QGridLayout" name="gridLayout_4">
+   <layout class="QVBoxLayout" name="verticalLayout_3" stretch="3,2">
+    <item>
+     <layout class="QGridLayout" name="gridLayout_4" rowstretch="0,0,0,0,0,0,0">
       <property name="leftMargin">
        <number>18</number>
       </property>
@@ -93,7 +35,7 @@
       <property name="verticalSpacing">
        <number>0</number>
       </property>
-      <item row="3" column="0">
+      <item row="6" column="0">
        <layout class="QVBoxLayout" name="verticalLayout">
         <property name="spacing">
          <number>6</number>
@@ -111,162 +53,496 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QLabel" name="label_9">
+         <widget class="QComboBox" name="comboBoxDevices">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="maximumSize">
-           <size>
-            <width>16777215</width>
-            <height>5</height>
-           </size>
-          </property>
           <property name="styleSheet">
-           <string notr="true">QLabel {
-    color: #80d4ec;
-    font-size: 16px;
-    background-color: #80d4ec;
+           <string notr="true">QComboBox {
+    background-color: #131313;
+    color: #f8f44c;
+    border: 1px solid #f8f44c;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
 
-
-}</string>
-          </property>
-          <property name="text">
-           <string>__________________________________________________________</string>
+QComboBox QAbstractItemView {
+    background-color: #131313;
+    color: #f8f44c;
+    selection-background-color: #f8f44c;
+    selection-color: #131313;
+}
+</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_2">
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <property name="leftMargin">
+           <number>45</number>
+          </property>
+          <property name="rightMargin">
+           <number>45</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+    border: 1px solid white;
+	border-color:  #f8f44c;
+	background-image: url(:/1/1234.png);
+}
+</string>
+            </property>
+            <property name="lineWidth">
+             <number>1</number>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item row="6" column="3">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="spacing">
+         <number>14</number>
+        </property>
+        <property name="leftMargin">
+         <number>130</number>
+        </property>
+        <property name="rightMargin">
+         <number>130</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QProgressBar" name="progressBar">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QProgressBar {
+    border: none;
+    background-color: transparent;
+    text-align: center;
+    color: white;
+}
+
+QProgressBar::chunk {
+    background-color: #f8f44c; /* Цвет заполнения */
+    margin: 0px;
+width: 10px;
+    margin: 0.5px;
+}
+</string>
+            </property>
+            <property name="value">
+             <number>0</number>
+            </property>
+            <property name="textVisible">
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>17</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>ArrowCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    border: 1px solid white;
+	border-color: #f8f44c;
+    color: white;
+}
+QPushButton:hover {
+    background-color: #f8f44c;
+    border-color: #f8f44c;
+    color: #131313;
+}
+
+QPushButton:pressed {
+    background-color: #222;
+    border-color: #f8f44c;
+    padding-left: 1px;  /* легкое смещение при нажатии */
+    padding-top: 1px;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>START: OFF</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>17</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    border: 1px solid white;
+	border-color: #f8f44c;
+    color: white;
+}
+QPushButton:hover {
+    background-color: #f8f44c;
+    border-color: #f8f44c;
+    color: #131313;
+}
+
+QPushButton:pressed {
+    background-color: #222;
+    border-color: #f8f44c;
+    padding-left: 1px;  /* легкое смещение при нажатии */
+    padding-top: 1px;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>SCAN: OFF</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_3">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>17</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    border: 1px solid white;
+	border-color: #f8f44c;
+    color: white;
+}
+QPushButton:hover {
+    background-color: #f8f44c;
+    border-color: #f8f44c;
+    color: #131313;
+}
+
+QPushButton:pressed {
+    background-color: #222;
+    border-color: #f8f44c;
+    padding-left: 1px;  /* легкое смещение при нажатии */
+    padding-top: 1px;
+}
+
+</string>
+            </property>
+            <property name="text">
+             <string>ANALYS: OFF</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+      <item row="2" column="0">
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+           </font>
+          </property>
           <property name="styleSheet">
            <string notr="true">QLabel {
-    border: 1px solid white;
-	border-color: rgb(128, 212, 236);
+    color: white;
 }
 </string>
           </property>
-          <property name="lineWidth">
-           <number>1</number>
+          <property name="text">
+           <string> MetalScan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="connect_button">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>0</width>
+            <height>4</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>16</pointsize>
+           </font>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LayoutDirection::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    border: 1px solid white;
+	border-color: #f8f44c;
+    color: white;
+}
+QPushButton:hover {
+    background-color: #f8f44c;
+    border-color: #f8f44c;
+    color: #131313;
+}
+
+QPushButton:pressed {
+    background-color: #222;
+    border-color: #f8f44c;
+    padding-left: 1px;  /* легкое смещение при нажатии */
+    padding-top: 1px;
+}
+
+</string>
           </property>
           <property name="text">
-           <string>TextLabel</string>
+           <string> Connect </string>
           </property>
          </widget>
         </item>
        </layout>
       </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_9">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>5</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
+    color: #f8f44c;
+    font-size: 16px;
+    background-color: #f8f44c;
+
+
+}</string>
+        </property>
+        <property name="text">
+         <string>__________________________________________________________</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,0,0,0,0">
+      <property name="leftMargin">
+       <number>18</number>
+      </property>
+      <property name="topMargin">
+       <number>18</number>
+      </property>
+      <property name="rightMargin">
+       <number>18</number>
+      </property>
+      <item row="0" column="4">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="font">
+           <font>
+            <pointsize>17</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    border: 1px solid white;
+	border-color:  #f8f44c;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>RESULT</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>17</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="cursor">
+           <cursorShape>ArrowCursor</cursorShape>
+          </property>
+          <property name="layoutDirection">
+           <enum>Qt::LayoutDirection::LeftToRight</enum>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    border: 1px solid white;
+	border-color:  #f8f44c;
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Defect None</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLabel" name="label_4">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
         <property name="styleSheet">
          <string notr="true">QLabel {
-    color: white;
+    border: 1px solid white;
+	border-color:  #f8f44c;
 }
 </string>
         </property>
         <property name="text">
-         <string> MetalScan</string>
+         <string/>
         </property>
        </widget>
       </item>
-      <item row="3" column="1">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <property name="spacing">
-         <number>14</number>
+      <item row="0" column="0">
+       <widget class="QTextEdit" name="textEdit">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
         </property>
-        <property name="leftMargin">
-         <number>15</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_3">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text">
-           <string>TextLabel</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>17</pointsize>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
-    border: 1px solid white;
-	border-color: rgb(128, 212, 236);
-    color: white;
-
+        <property name="styleSheet">
+         <string notr="true">QTextEdit {
+	background-color: #131313;
+	border: 1px solid white;
+	border-color:  #f8f44c;
 }
 </string>
-          </property>
-          <property name="text">
-           <string>START: ON</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pushButton_2">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <family>Segoe UI</family>
-            <pointsize>17</pointsize>
-            <bold>true</bold>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton {
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLabel" name="label_5">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QLabel {
     border: 1px solid white;
-	border-color: rgb(128, 212, 236);
-    color: white;
-
+	border-color:  #f8f44c;
 }
 </string>
-          </property>
-          <property name="text">
-           <string>SCAN: ON</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -277,8 +553,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>913</width>
-     <height>22</height>
+     <width>917</width>
+     <height>33</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -317,8 +593,12 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionf">
+   <property name="icon">
+    <iconset>
+     <normaloff>media/GPM/Logo/Screenshot 2025-04-21 060631.png</normaloff>media/GPM/Logo/Screenshot 2025-04-21 060631.png</iconset>
+   </property>
    <property name="text">
-    <string>New</string>
+    <string>Update</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+F1</string>
@@ -327,20 +607,37 @@
   <action name="action123">
    <property name="icon">
     <iconset>
-     <normaloff>C:/Users/User/Desktop/GPM/Logo/Painkiller.png</normaloff>C:/Users/User/Desktop/GPM/Logo/Painkiller.png</iconset>
+     <normaloff>media/GPM/Design/Screenshot_2025-04-28_170900-removebg-preview.png</normaloff>media/GPM/Design/Screenshot_2025-04-28_170900-removebg-preview.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+F2</string>
+   </property>
   </action>
   <action name="action123_2">
+   <property name="icon">
+    <iconset>
+     <normaloff>media/GPM/Design/Screenshot_2025-04-28_171838-removebg-preview.png</normaloff>media/GPM/Design/Screenshot_2025-04-28_171838-removebg-preview.png</iconset>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+F3</string>
+   </property>
   </action>
   <action name="action123_3">
+   <property name="icon">
+    <iconset>
+     <normaloff>media/GPM/Design/Screenshot_2025-04-28_205206-removebg-preview.png</normaloff>media/GPM/Design/Screenshot_2025-04-28_205206-removebg-preview.png</iconset>
+   </property>
    <property name="text">
     <string>Save As...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F4</string>
    </property>
   </action>
   <action name="actionQuit">
@@ -349,18 +646,39 @@
    </property>
   </action>
   <action name="actionQuit_2">
+   <property name="icon">
+    <iconset>
+     <normaloff>media/GPM/Design/Screenshot_2025-04-28_210142-removebg-preview.png</normaloff>media/GPM/Design/Screenshot_2025-04-28_210142-removebg-preview.png</iconset>
+   </property>
    <property name="text">
     <string>Quit</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+F5</string>
+   </property>
   </action>
   <action name="actionUndo">
+   <property name="icon">
+    <iconset>
+     <normaloff>media/GPM/Design/Screenshot_2025-05-10_173306-removebg-preview.png</normaloff>media/GPM/Design/Screenshot_2025-05-10_173306-removebg-preview.png</iconset>
+   </property>
    <property name="text">
     <string>Undo</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
   </action>
   <action name="actionRedo">
+   <property name="icon">
+    <iconset>
+     <normaloff>media/GPM/Design/Screenshot_2025-05-10_173400-removebg-preview.png</normaloff>media/GPM/Design/Screenshot_2025-05-10_173400-removebg-preview.png</iconset>
+   </property>
    <property name="text">
     <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
    </property>
   </action>
   <action name="actionAbout">
@@ -371,6 +689,7 @@
  </widget>
  <resources>
   <include location="fonts/chopsic/12.qrc"/>
+  <include location="fonts/chopsic/colors.qrc"/>
  </resources>
  <connections/>
 </ui>
