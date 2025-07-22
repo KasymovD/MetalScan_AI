@@ -33,7 +33,7 @@ else:
     font_family = QFontDatabase.applicationFontFamilies(font_id)[0]
 
 loader = QUiLoader()
-ui_file = QFile("GMP.ui")
+ui_file = QFile("app_design.ui")
 ui_file.open(QFile.ReadOnly)
 window = loader.load(ui_file)
 ui_file.close()
@@ -179,7 +179,7 @@ label_4.setStyleSheet("""
 label.setText(f'''
     <span style="font-family: '{font_family}'; font-size: 42px; color: white;">
         MetalScan
-        <img src="app/GPM/Logo/logo.png" height="50" style="vertical-align: top; margin-left: 10px;">
+        <img src="media/photos/logo.png" height="50" style="vertical-align: top; margin-left: 10px;">
     </span>
 ''')
 
