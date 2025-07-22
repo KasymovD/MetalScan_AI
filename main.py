@@ -4,8 +4,8 @@ from PySide6.QtWidgets import QLabel, QWidget, QTextEdit, QComboBox, QMessageBox
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QTimer
 import random
-from sdk.CamOperation_class import CameraOperation
-from sdk.MvCameraControl_class import *
+from CamOperation_class import CameraOperation
+from MvCameraControl_class import *
 import matplotlib.pyplot as plt
 import numpy as np
 from PySide6.QtGui import QPixmap, QImage
