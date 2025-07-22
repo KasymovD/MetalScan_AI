@@ -1,13 +1,11 @@
-import os
 from PyQt5.QtWidgets import *
 from PySide6.QtGui import QFontDatabase, QFont, QCursor, QPainter, QPen, QColor
 from PySide6.QtWidgets import QLabel, QWidget, QTextEdit, QComboBox, QMessageBox, QApplication, QProgressBar, QPushButton
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QTimer
 import random
-from CamOperation_class import CameraOperation
-from MvCameraControl_class import *
-from MvCameraControl_class import MvCamera, MV_CC_DEVICE_INFO_LIST
+from sdk.CamOperation_class import CameraOperation
+from sdk.MvCameraControl_class import *
 import matplotlib.pyplot as plt
 import numpy as np
 from PySide6.QtGui import QPixmap, QImage
