@@ -69,7 +69,7 @@ The system aims to detect defects in aluminum alloy die-casting molds using high
 
 ## Usage 使用說明
 
-1. 複製此儲存庫（Clone the repo
+1. 複製此儲存庫（Clone the repo）
 ```bash
 git clone https://github.com/KasymovD/aluminum-defect-detector.git
 ```
