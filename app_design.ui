@@ -208,7 +208,7 @@ QPushButton:pressed {
 </string>
             </property>
             <property name="text">
-             <string>START: OFF</string>
+             <string>啟動：關</string>
             </property>
            </widget>
           </item>
@@ -249,7 +249,7 @@ QPushButton:pressed {
 </string>
             </property>
             <property name="text">
-             <string>SCAN: OFF</string>
+             <string>掃描：關</string>
             </property>
            </widget>
           </item>
@@ -289,7 +289,7 @@ QPushButton:pressed {
 </string>
             </property>
             <property name="text">
-             <string>ANALYS: OFF</string>
+             <string>分析：關</string>
             </property>
            </widget>
           </item>
@@ -326,7 +326,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string> MetalScan</string>
+           <string>智慧型合金壓鑄模具瑕疵檢測系統 </string>
           </property>
          </widget>
         </item>
@@ -374,7 +374,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string> Connect </string>
+           <string> 連接相機 </string>
           </property>
          </widget>
         </item>
@@ -439,7 +439,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>RESULT</string>
+           <string>結果</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -474,7 +474,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>Defect None</string>
+           <string>缺陷</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -688,8 +688,8 @@ QPushButton:pressed {
   </action>
  </widget>
  <resources>
-  <include location="fonts/chopsic/12.qrc"/>
-  <include location="fonts/chopsic/colors.qrc"/>
+  <include location="../GMP_contest/fonts/chopsic/colors.qrc"/>
+  <include location="../GMP_contest/fonts/chopsic/12.qrc"/>
  </resources>
  <connections/>
 </ui>

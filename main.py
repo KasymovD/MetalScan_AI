@@ -214,12 +214,12 @@ pix = create_diagonal_stripe_pixmap(300, 100, QColor("#f8f44c"), QColor("#131313
 
 switch_btn = window.findChild(QPushButton, "pushButton")
 is_on = False
-switch_btn.setText("Start: OFF")
+switch_btn.setText("啟動：關")
 
 def toggle_state():
     global is_on
     is_on = not is_on
-    switch_btn.setText("Start: ON" if is_on else "Start: OFF")
+    switch_btn.setText("啟動：開" if is_on else "啟動：關")
 
 switch_btn.clicked.connect(toggle_state)
 
@@ -238,7 +238,7 @@ def update_progress():
         progress_bar.setValue(progress_value)
     else:
         timer.stop()
-        switch_btn_3.setText("Scan: OFF")
+        switch_btn_3.setText("掃描：關")
         global is_on_2
         is_on_2 = False
 
@@ -250,12 +250,12 @@ def toggle_state_2():
     is_on_2 = not is_on_2
 
     if is_on_2:
-        switch_btn_3.setText("Scan: ON")
+        switch_btn_3.setText("掃描：開")
         progress_value = 0
         progress_bar.setValue(0)
         progress_timer.start(40)
     else:
-        switch_btn_3.setText("Scan: OFF")
+        switch_btn_3.setText("掃描：關")
         progress_timer.stop()
         progress_bar.setValue(0)
 
