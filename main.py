@@ -1,32 +1,15 @@
 import os
-import sys
-from datetime import time, datetime
 from PyQt5.QtWidgets import *
-from CamOperation_class import CameraOperation
-from MvCameraControl_class import *
-from MvErrorDefine_const import *
-from CameraParams_header import *
-from PyUICBasicDemo import Ui_MainWindow
-import ctypes
-import time as tm
-from PySide6.QtGui import QFontDatabase, QFont, QPixmap, QCursor, QImage
-from PySide6.QtCore import QFile, Qt, QUrl
-from PySide6.QtWidgets import QApplication, QLabel, QWidget, QTextEdit, QComboBox, QMessageBox, QGroupBox
-from PySide6.QtGui import QPixmap, QPainter, QPen, QColor
-from PySide6.QtWidgets import QApplication, QMainWindow, QProgressBar, QPushButton
+from PySide6.QtGui import QFontDatabase, QFont, QCursor, QPainter, QPen, QColor
+from PySide6.QtWidgets import QLabel, QWidget, QTextEdit, QComboBox, QMessageBox, QApplication, QProgressBar, QPushButton
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtCore import QFile, QTimer
 import random
 from CamOperation_class import CameraOperation
 from MvCameraControl_class import *
-from MvErrorDefine_const import *
 from MvCameraControl_class import MvCamera, MV_CC_DEVICE_INFO_LIST
-from PySide6.QtMultimedia import QSoundEffect
-from matplotlib.backends.backend_agg import FigureCanvasAgg
-import cv2
 import matplotlib.pyplot as plt
 import numpy as np
-from matplotlib.backends.backend_agg import FigureCanvasAgg
 from PySide6.QtGui import QPixmap, QImage
 from PySide6.QtCore import Qt
 import io
@@ -38,7 +21,7 @@ model = YOLO("model/best.pt")
 CONF_TH = 0.4
 IOU_TH  = 0.5
 
-font_id = QFontDatabase.addApplicationFont("fonts/chopsic/Chopsic.otf")
+font_id = QFontDatabase.addApplicationFont("media/fonts/Chopsic.otf")
 MvCamera.MV_CC_Initialize()
 deviceList = MV_CC_DEVICE_INFO_LIST()
 cam = MvCamera()
@@ -125,7 +108,7 @@ def start_stop_camera():
 
         label_2.setStyleSheet("""
             QLabel {
-                background-image: url("media/GPM/Design/12345.png");
+                background-image: url("media/photos/main_photo.png");
                 background-repeat: no-repeat;
                 background-position: center;
                 background-color: transparent;
@@ -166,7 +149,7 @@ start_button.clicked.connect(start_stop_camera)
 
 label_2.setStyleSheet("""
     QLabel {
-        background-image: url("media/GPM/Design/12345.png");
+        background-image: url("media/photos/main_photo.png");
         background-repeat: no-repeat;
         background-position: center;
         background-color: transparent;
@@ -177,7 +160,7 @@ label_2.setStyleSheet("""
 
 label_5.setStyleSheet("""
     QLabel {
-        background-image: url("media/GPM/Design/Radar (1).png");
+        background-image: url("media/photos/radar.png");
         background-repeat: no-repeat;
         background-position: center;
         background-color: transparent;
@@ -187,7 +170,7 @@ label_5.setStyleSheet("""
 
 label_4.setStyleSheet("""
     QLabel {
-        background-image: url("media/GPM/Design/zoom (1).png");
+        background-image: url("media/photos/zoom.png");
         background-repeat: no-repeat;
         background-position: center;
         background-color: transparent;
@@ -198,7 +181,7 @@ label_4.setStyleSheet("""
 label.setText(f'''
     <span style="font-family: '{font_family}'; font-size: 42px; color: white;">
         MetalScan
-        <img src="media/GPM/Logo/logo.png" height="50" style="vertical-align: top; margin-left: 10px;">
+        <img src="app/GPM/Logo/logo.png" height="50" style="vertical-align: top; margin-left: 10px;">
     </span>
 ''')
 
@@ -207,8 +190,7 @@ label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
 label_2.setScaledContents(True)
 
 label.setFont(QFont(font_family, 32))
-pixmap = QPixmap("media/GPM/Logo/logo.png")
-path = os.path.abspath("fonts/12.jpg").replace("\\", "/")
+pixmap = QPixmap("media/photos/logo.png")
 
 
 def create_diagonal_stripe_pixmap(width, height, stripe_color, bg_color):
@@ -285,8 +267,8 @@ terminal_timer = QTimer()
 terminal_timer.timeout.connect(update_progress)
 start_button.clicked.connect(lambda: terminal_timer.start(400))
 
-cursor_normal  = QPixmap("media\GPM\Design\cursor.png").scaled(24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
-# cursor_click = QCursor(QPixmap("media\GPM\Design\cursor_2.png").scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
+cursor_normal  = QPixmap("media/app/cursor.png").scaled(24, 24, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+# cursor_click = QCursor(QPixmap("app\GPM\Design\cursor_2.png").scaled(32, 32, Qt.KeepAspectRatio, Qt.SmoothTransformation))
 
 cursor = QCursor(cursor_normal, 0, 0)
 
@@ -325,7 +307,7 @@ def activate_terminal():
 
 terminal_box.setStyleSheet("""
     QTextEdit {
-        background-image: url("media/GPM/Design/term.png");
+        background-image: url("media/photos/term_log.png");
         background-repeat: no-repeat;
         background-position: center;
         background-color: transparent;
@@ -521,7 +503,7 @@ scan_btn = window.findChild(QPushButton, "pushButton_2")
 scan_btn.clicked.connect(scan_simulation)
 
 def show_output_image():
-    image_path = "media/output.jpg"
+    image_path = "app/output.jpg"
     pixmap = QPixmap(image_path)
 
     if not pixmap.isNull():
