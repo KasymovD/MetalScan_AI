@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>917</width>
-    <height>612</height>
+    <width>954</width>
+    <height>593</height>
    </rect>
   </property>
   <property name="cursor">
@@ -213,6 +213,88 @@ QPushButton:pressed {
            </widget>
           </item>
           <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5">
+            <item>
+             <widget class="QPushButton" name="pushButton_4">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>17</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    border: 1px solid white;
+	border-color: #f8f44c;
+    color: white;
+}
+QPushButton:hover {
+    background-color: #f8f44c;
+    border-color: #f8f44c;
+    color: #131313;
+}
+
+QPushButton:pressed {
+    background-color: #222;
+    border-color: #f8f44c;
+    padding-left: 1px;  /* легкое смещение при нажатии */
+    padding-top: 1px;
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string>開始循環</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_5">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <pointsize>17</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">QPushButton {
+    border: 1px solid white;
+	border-color: #f8f44c;
+    color: white;
+}
+QPushButton:hover {
+    background-color: #f8f44c;
+    border-color: #f8f44c;
+    color: #131313;
+}
+
+QPushButton:pressed {
+    background-color: #222;
+    border-color: #f8f44c;
+    padding-left: 1px;  /* легкое смещение при нажатии */
+    padding-top: 1px;
+}
+
+</string>
+              </property>
+              <property name="text">
+               <string>下一循環</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
            <widget class="QPushButton" name="pushButton_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
@@ -326,7 +408,7 @@ QPushButton:pressed {
 </string>
           </property>
           <property name="text">
-           <string>智慧型合金壓鑄模具瑕疵檢測系統 </string>
+           <string> AlphaMold</string>
           </property>
          </widget>
         </item>
@@ -553,7 +635,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>917</width>
+     <width>954</width>
      <height>33</height>
     </rect>
    </property>
@@ -688,8 +770,8 @@ QPushButton:pressed {
   </action>
  </widget>
  <resources>
-  <include location="../GMP_contest/fonts/chopsic/colors.qrc"/>
-  <include location="../GMP_contest/fonts/chopsic/12.qrc"/>
+  <include location="fonts/chopsic/12.qrc"/>
+  <include location="fonts/chopsic/colors.qrc"/>
  </resources>
  <connections/>
 </ui>

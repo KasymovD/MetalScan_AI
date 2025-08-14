@@ -2,13 +2,11 @@ import threading
 import time
 import sys
 import inspect
-import ctypes
 import random
-from ctypes import *
 
 sys.path.append("../MvImport")
 
-from sdk.CameraParams_header import *
+from libs.sdk.CameraParams_header import *
 from MvCameraControl_class import *
 
 # 强制关闭线程
