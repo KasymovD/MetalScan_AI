@@ -18,34 +18,41 @@ from utils import save_capture_to_db
 from notify import SendTelegramThread
 import numpy as np, cv2
 from PySide6.QtGui import QImage, QPixmap
-
+import numpy as np
+from ultralytics import YOLO
+from PySide6.QtCore import QFile, QTimer, QProcess, Slot
+import ctypes
+import cv2
+from PySide6.QtCore import Qt
+import os, glob, shutil, datetime
+import numpy as np
+import cv2
+from PySide6.QtGui import QImage, QPixmap
+import os, time, glob, shutil, datetime, cv2
+from collections import deque
+import cv2
+from PySide6.QtGui import QImage, QPixmap
 import typing
+from libs.sdk.MvErrorDefine_const import MV_OK
+
+
 try:
     from typing_extensions import Self as _Self
     if not hasattr(typing, "Self"):
         typing.Self = _Self
 except Exception:
     pass
-from ultralytics import YOLO
-from PySide6.QtCore import QFile, QTimer, QProcess, Slot
-import ctypes
-import cv2
 
-import os, time, glob, shutil, datetime, cv2
 
 CAP_DIR = "captures"
 os.makedirs(CAP_DIR, exist_ok=True)
 
-from collections import deque
-# ...
-DEFECT_POINTS = deque(maxlen=2000)  # (x, y, idx)
+DEFECT_POINTS = deque(maxlen=2000) 
 CAPTURE_IDX   = 0
 HEAT_WINDOW   = 15
 LAST_FRAME    = None
 
 def show_zoomed_on_label(label_widget, frame_bgr, zoom=2.0):
-    import cv2
-    from PySide6.QtGui import QImage, QPixmap
 
     h, w = frame_bgr.shape[:2]
     crop_w, crop_h = int(w/zoom), int(h/zoom)
@@ -67,6 +74,7 @@ def show_zoomed_on_label(label_widget, frame_bgr, zoom=2.0):
     return crop
 
 def capture_snapshot_plain():
+
     global CAPTURE_IDX
     CAPTURE_IDX += 1
     global obj_cam_operation, isOpen, isGrabbing, label_4, label_6, model, CONF_TH, IOU_TH
@@ -76,7 +84,6 @@ def capture_snapshot_plain():
         QMessageBox.warning(window, "Capture", "The camera is not running (Open/Start_grabbing).", QMessageBox.Ok)
         return
 
-    from libs.sdk.MvErrorDefine_const import MV_OK
     ret = obj_cam_operation.Save_Bmp()
     if ret != MV_OK:
         QMessageBox.warning(window, "Capture", f"Save_Bmp failed (ret={ret})", QMessageBox.Ok)
@@ -133,17 +140,8 @@ def capture_snapshot_plain():
     zoom_path = os.path.join(CAP_DIR, f"shot_{ts}_zoom.jpg")
     cv2.imwrite(zoom_path, zoom_crop)
 
-    # label_6.setText("❌" if counts.get("defect", 0) > 0 else "✅")
-
-    print("📸 Saved raw:", raw_path)
-    print("🔎 Saved zoom:", zoom_path)
-
 
 def capture_snapshot():
-    import os, glob, shutil, datetime
-    import numpy as np
-    import cv2
-    from PySide6.QtGui import QImage, QPixmap
 
     global CAPTURE_IDX
     CAPTURE_IDX += 1
@@ -155,7 +153,6 @@ def capture_snapshot():
         QMessageBox.warning(window, "Capture", "The camera is not running (Open/Start_grabbing).", QMessageBox.Ok)
         return
 
-    from MvErrorDefine_const import MV_OK
     ret = obj_cam_operation.Save_Bmp()
     if ret != MV_OK:
         QMessageBox.warning(window, "Capture", f"Save_Bmp failed (ret={ret})", QMessageBox.Ok)
@@ -254,7 +251,6 @@ def capture_snapshot():
     print("📸 Saved raw:", raw_path)
     print("🧠 YOLO det:", det_path)
 
-import numpy as np
 CLS_COLORS = {
     "sample": (255, 200, 0),
     "defect": (0, 0, 255),
@@ -334,7 +330,6 @@ QTimer.singleShot(0, lambda: enum_devices())
 if window is None:
     raise RuntimeError("UI failed to load (loader.load returned None). Check the path to app_design.ui and custom widgets.")
 
-from PySide6.QtCore import Qt
 def must_find(name, cls):
     w = window.findChild(cls, name, Qt.FindChildrenRecursively)
     if w is None:
@@ -570,12 +565,7 @@ def create_diagonal_stripe_pixmap(width, height, stripe_color, bg_color):
     return pixmap
 
 label_7 = window.findChild(QLabel, "label_7")
-
 pix = create_diagonal_stripe_pixmap(300, 100, QColor("#f8f44c"), QColor("#131313"))
-# label_7.setPixmap(pix)
-# label_7.setScaledContents(True)
-# label_7.setStyleSheet("color: #131313; font-size: 1px;")
-# label_7.setFixedHeight(40)
 
 switch_btn = window.findChild(QPushButton, "pushButton")
 is_on = False
@@ -624,7 +614,6 @@ def toggle_state_2():
         progress_timer.stop()
         progress_bar.setValue(0)
 
-# switch_btn_3.clicked.connect(toggle_state_2)
 terminal_timer = QTimer()
 
 terminal_timer.timeout.connect(update_progress)
@@ -639,20 +628,6 @@ window.setCursor(cursor)
 window.menuBar().setCursor(cursor)
 for child in window.findChildren(QWidget):
     child.setCursor(cursor)
-
-# terminal_box = window.findChild(QTextEdit, "textEdit")
-# sys.stdout = EmittingStream(terminal_box)
-# sys.stderr = EmittingStream(terminal_box)
-
-
-# def on_press():
-#     window.setCursor(cursor_click)
-#
-# def on_release():
-#     window.setCursor(cursor_normal)
-#
-# button.pressed.connect(on_press)
-# button.released.connect(on_release)
 
 terminal_box = window.findChild(QTextEdit, "textEdit")
 start_button = window.findChild(QPushButton, "pushButton")
@@ -815,10 +790,8 @@ def on_heatmap_click():
 
     if defect_count > 0:
         label_6.setText("❌")
-        # label_6.setStyleSheet("QLabel { color: red; font-size: 90px; border: 1px solid #f8f44c; }")
     else:
         label_6.setText("✅")
-        # label_6.setStyleSheet("QLabel { color: #6ee16e; font-size: 90px; border: 1px solid #f8f44c; }")
 
     DEFECT_POINTS.clear()
 
@@ -881,7 +854,6 @@ def ToHexStr(num):
     return hexStr
 
 scan_btn = window.findChild(QPushButton, "pushButton_2")
-# scan_btn.clicked.connect(scan_simulation)
 
 def show_output_image():
     image_path = "app/output.jpg"
@@ -910,10 +882,6 @@ def show_output_image():
 btn = window.findChild(QPushButton, "pushButton_2")
 label_4 = window.findChild(QLabel, "label_4")
 label_6 = window.findChild(QLabel, "label_6")
-
-
-# btn.clicked.connect(show_output_image)
-# scan_btn.clicked.connect(capture_snapshot)
 scan_btn.clicked.connect(capture_snapshot_plain)
 
 window.showMaximized()
