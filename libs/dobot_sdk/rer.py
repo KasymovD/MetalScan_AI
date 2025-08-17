@@ -3,26 +3,22 @@ import time, os
 from pathlib import Path
 import DobotDllType as dType
 
-# --- DLL рядом со скриптом ---
 HERE = Path(__file__).resolve().parent
 os.add_dll_directory(str(HERE))
 
-# -------- ПАРАМЕТРЫ ПОДКЛЮЧЕНИЯ --------
 PORT, BAUD = "", 115200          # "" = авто; иначе "COM3"
 
-# -------- ПАРАМЕТРЫ ДВИЖЕНИЯ --------
-SPEED_TRANSIT  = (80, 80)        # быстрые перегоны
-SPEED_APPROACH = (40, 40)        # подлет
-SPEED_FINE     = (20, 20)        # посадка / отрыв
+SPEED_TRANSIT  = (80, 80)        
+SPEED_APPROACH = (40, 40)       
+SPEED_FINE     = (20, 20)        
 
-Z_LIFT          = 50.0           # подлёт сверху
-APPROACH_BUF    = 20.0           # буфер над рабочей Z
-SETTLE_DWELL    = 0.25           # пауза перед/после grip, с
+Z_LIFT          = 50.0         
+APPROACH_BUF    = 20.0           
+SETTLE_DWELL    = 0.25           
 
-Z_PICK_OFFS     = 0.0            # тонкая доводка Z в A
-Z_PLACE_OFFS    = 0.0            # тонкая доводка Z в B
+Z_PICK_OFFS     = 0.0            
+Z_PLACE_OFFS    = 0.0            
 
-# -------- КООРДИНАТЫ TCP (твои замеры) --------
 A1 = (198.5629,  -32.3904,  -20.1180,  -9.2647)
 A2 = (191.9371,   22.5373,  -20.5744,  -9.2647)
 A3 = (186.7198,   79.5747,  -20.5744,  -9.2647)
@@ -78,7 +74,7 @@ def home(api):
 def connect():
     api = dType.load()
     if dType.ConnectDobot(api, PORT, BAUD)[0]:
-        raise RuntimeError("Не удаётся подключиться (закрой DobotStudio)")
+        raise RuntimeError("Unable to connect (close DobotStudio)")
     dType.SetCmdTimeout(api, 3000); start_queue(api)
     set_speed(api, *SPEED_TRANSIT)
     return api
@@ -98,7 +94,7 @@ def cycle_slot(api, Ax, By):
 
     ptp(api, *SAFE)
 
-    input("[ENTER] — забрать из B и вернуть…")
+    input("[ENTER] — pick up from B and return…")
 
     # B -> A
     descend(api, bx, by, bz, br, Z_PLACE_OFFS)
@@ -110,7 +106,7 @@ def cycle_slot(api, Ax, By):
     ascend(api, ax, ay, az, ar)
 
     ptp(api, *SAFE)
-    input("[ENTER] — следующий слот…")
+    input("[ENTER] — next slot…")
 
 def main():
     api = connect()

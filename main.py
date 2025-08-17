@@ -1,7 +1,7 @@
 from PySide6.QtGui import QFontDatabase, QFont, QCursor, QPainter, QPen, QColor
 from PySide6.QtWidgets import QLabel, QWidget, QTextEdit, QComboBox, QMessageBox, QApplication, QProgressBar, QPushButton
 from PySide6.QtUiTools import QUiLoader
-from PySide6.QtCore import QFile, QTimer
+from PySide6.QtCore import QFile, QTimer, QProcessEnvironment
 import random
 from libs.sdk.CamOperation_class import CameraOperation
 from libs.sdk.MvCameraControl_class import *
@@ -34,6 +34,8 @@ import cv2
 from PySide6.QtGui import QImage, QPixmap
 import typing
 from libs.sdk.MvErrorDefine_const import MV_OK
+from PySide6.QtCore import QProcess
+from pathlib import Path
 
 
 try:
@@ -313,8 +315,11 @@ obj_cam_operation = None
 isOpen = False
 isGrabbing = False
 
-PY32 = r"C:\Users\User\AppData\Local\Programs\Python\Python313-32\python.exe"
-DOBOT_SCRIPT = r"D:\PycharmProjects\clone_my_projects\StarterGuide-Dobot-Magician-with-Python\Python Example Files\rer.py"
+ROOT = Path(__file__).resolve().parent  
+PY32 = (ROOT / "libs" / "Python313-32" / "python.exe").resolve()
+DOBOT_SCRIPT = (ROOT / "libs" / "dobot_sdk" / "rer.py").resolve()
+# PY32 = r"libs\Python313-32\python.exe"
+# DOBOT_SCRIPT = r"libs\dobot_sdk\rer.py"
 
 if font_id == -1:
     print("Error")
@@ -635,11 +640,17 @@ start_button = window.findChild(QPushButton, "pushButton")
 dobot_start_btn = window.findChild(QPushButton, "pushButton_4")
 dobot_enter_btn = window.findChild(QPushButton, "pushButton_5")
 
-dobot_proc = QProcess(window)
-dobot_proc.setProcessChannelMode(QProcess.MergedChannels)  # stdout+stderr
+# --- Dobot process wiring ---
 
-from pathlib import Path
-dobot_proc.setWorkingDirectory(str(Path(DOBOT_SCRIPT).parent))
+dobot_proc = QProcess(window)
+
+env = QProcessEnvironment.systemEnvironment()
+env.insert("PYTHONUTF8", "1")
+env.insert("PYTHONIOENCODING", "utf-8")
+dobot_proc.setProcessEnvironment(env)
+dobot_proc.setWorkingDirectory(str(DOBOT_SCRIPT.parent))
+
+dobot_proc.setProcessChannelMode(QProcess.MergedChannels)
 
 def log_append(msg: str):
     if terminal_box:
@@ -650,15 +661,9 @@ def log_append(msg: str):
 
 @Slot()
 def dobot_on_ready_read():
-    try:
-        data = bytes(dobot_proc.readAllStandardOutput()).decode("utf-8", errors="ignore")
-        if data:
-            log_append(data)
-        err = bytes(dobot_proc.readAllStandardError()).decode("utf-8", errors="ignore")
-        if err:
-            log_append(err)
-    except Exception as e:
-        log_append(f"[read error] {e}")
+    data = bytes(dobot_proc.readAllStandardOutput()).decode("utf-8", errors="ignore")
+    if data:
+        log_append(data)
 
 @Slot()
 def dobot_on_started():
@@ -668,7 +673,8 @@ def dobot_on_started():
 
 @Slot(int, QProcess.ExitStatus)
 def dobot_on_finished(code, status):
-    log_append(f"[Dobot] 已完成 (code={code}, status={int(status)})")
+    st = "NormalExit" if status == QProcess.NormalExit else "Crashed"
+    log_append(f"[Dobot] 已完成 (code={code}, status={st})")
     dobot_start_btn.setEnabled(True)
     dobot_enter_btn.setEnabled(False)
 
@@ -677,7 +683,7 @@ def dobot_start():
     if dobot_proc.state() != QProcess.NotRunning:
         log_append("[Dobot] 已在運行")
         return
-    dobot_proc.start(PY32, [DOBOT_SCRIPT])
+    dobot_proc.start(str(PY32), ["-X", "utf8", str(DOBOT_SCRIPT)])
 
 @Slot()
 def dobot_send_enter():
@@ -689,13 +695,16 @@ def dobot_send_enter():
         log_append("[Dobot] 程序未啟動")
 
 dobot_proc.readyReadStandardOutput.connect(dobot_on_ready_read)
-dobot_proc.readyReadStandardError.connect(dobot_on_ready_read)
 dobot_proc.started.connect(dobot_on_started)
 dobot_proc.finished.connect(dobot_on_finished)
+dobot_proc.errorOccurred.connect(lambda e: log_append(f"[Dobot] ERROR: {e} | {dobot_proc.errorString()}"))
 
 dobot_start_btn.clicked.connect(dobot_start)
 dobot_enter_btn.clicked.connect(dobot_send_enter)
 dobot_enter_btn.setEnabled(False)
+
+app.aboutToQuit.connect(lambda: dobot_proc.kill())
+
 
 def activate_terminal():
     terminal_box.setStyleSheet("""
