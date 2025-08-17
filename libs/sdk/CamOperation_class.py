@@ -1,13 +1,16 @@
+# -- coding: utf-8 --
 import threading
 import time
 import sys
 import inspect
+import ctypes
 import random
+from ctypes import *
 
 sys.path.append("../MvImport")
 
 from libs.sdk.CameraParams_header import *
-from MvCameraControl_class import *
+from libs.sdk.MvCameraControl_class import *
 
 # 强制关闭线程
 def Async_raise(tid, exctype):

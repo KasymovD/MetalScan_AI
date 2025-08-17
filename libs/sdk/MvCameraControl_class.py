@@ -1,10 +1,15 @@
 # -- coding: utf-8 --
 
+import sys
+import copy
 import ctypes
 
 from ctypes import *
 
+from libs.sdk.PixelType_header import *
 from libs.sdk.CameraParams_const import *
+from libs.sdk.CameraParams_header import *
+from libs.sdk.MvErrorDefine_const import *
 
 # Python3.8版本修改Dll加载策略, 默认不再搜索Path环境变量, 同时增加winmode参数以兼容旧版本
 dllname = "MvCameraControl.dll"

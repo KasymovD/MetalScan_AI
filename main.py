@@ -1,14 +1,23 @@
 from PySide6.QtGui import QFontDatabase, QFont, QCursor, QPainter, QPen, QColor
 from PySide6.QtWidgets import QLabel, QWidget, QTextEdit, QComboBox, QMessageBox, QApplication, QProgressBar, QPushButton
 from PySide6.QtUiTools import QUiLoader
+from PySide6.QtCore import QFile, QTimer
 import random
-from CamOperation_class import CameraOperation
-from MvCameraControl_class import *
+from libs.sdk.CamOperation_class import CameraOperation
+from libs.sdk.MvCameraControl_class import *
+import matplotlib.pyplot as plt
+from PySide6.QtGui import QPixmap, QImage
+from PySide6.QtCore import Qt
+import io
+from collections import deque
+from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime
+from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime
+import db
 from utils import save_capture_to_db
 from notify import SendTelegramThread
+import numpy as np, cv2
 from PySide6.QtGui import QImage, QPixmap
-from libs.sdk.CameraParams_header import *
 
 import typing
 try:
@@ -20,8 +29,9 @@ except Exception:
 from ultralytics import YOLO
 from PySide6.QtCore import QFile, QTimer, QProcess, Slot
 import ctypes
+import cv2
 
-import os, glob, shutil, datetime, cv2
+import os, time, glob, shutil, datetime, cv2
 
 CAP_DIR = "captures"
 os.makedirs(CAP_DIR, exist_ok=True)
@@ -145,7 +155,7 @@ def capture_snapshot():
         QMessageBox.warning(window, "Capture", "The camera is not running (Open/Start_grabbing).", QMessageBox.Ok)
         return
 
-    from libs.sdk.MvErrorDefine_const import MV_OK
+    from MvErrorDefine_const import MV_OK
     ret = obj_cam_operation.Save_Bmp()
     if ret != MV_OK:
         QMessageBox.warning(window, "Capture", f"Save_Bmp failed (ret={ret})", QMessageBox.Ok)
@@ -307,8 +317,8 @@ obj_cam_operation = None
 isOpen = False
 isGrabbing = False
 
-PY32 = r"libs\Python313-32\python.exe"
-DOBOT_SCRIPT = r"libs\dobot_sdk\rer.py"
+PY32 = r"C:\Users\User\AppData\Local\Programs\Python\Python313-32\python.exe"
+DOBOT_SCRIPT = r"D:\PycharmProjects\clone_my_projects\StarterGuide-Dobot-Magician-with-Python\Python Example Files\rer.py"
 
 if font_id == -1:
     print("Error")
@@ -386,7 +396,7 @@ def start_stop_camera():
         ret = obj_cam_operation.Open_device()
         if ret != 0:
             try:
-                from libs.sdk.MvErrorDefine_const import MV_E_ACCESS, MV_E_BUSY, MV_E_RESOURCE
+                from MvErrorDefine_const import MV_E_ACCESS, MV_E_BUSY, MV_E_RESOURCE
             except Exception:
                 pass
             QMessageBox.warning(window, "Error", f"Open device failed! ret=0x{ret & 0xffffffff:08x}\n"
